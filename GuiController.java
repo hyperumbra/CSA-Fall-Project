@@ -2,7 +2,6 @@ package application;
 
 import javafx.scene.control.TextArea;
 import java.time.LocalDate;
-import java.util.Observable;	
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,10 +46,13 @@ public class GuiController {
 	int heightInInches;
 	int weight;
 	boolean isMale = false;
-	int celebCount = 0;
+	
+	//Creates a list of Celebrities that can be modified by the user in the GUI
 	ObservableList<DeadCelebrity> deadCelebrities = FXCollections.observableArrayList();
-	//private java.util.List<DeadCelebrity> deadCelebrities = new ArrayList<DeadCelebrity>();
-	//ObservableList<DeadCelebrity> observableDeadCelebrities = FXCollections.observableArrayList(deadCelebrities);
+	
+	//Creating an number that indexes the list of Celebrities
+	int celebCount = 0;
+
 	
 	//Fields for the scene
 	//TabPane
@@ -92,24 +94,22 @@ public class GuiController {
 	private Label picturePathLabel;
 	@FXML
 	private Label waistSizeLabel;
+	@FXML
+	private Label helpLabel1;
+	@FXML
+	private Label helpLabel2;
+	@FXML
+	private Label helpLabel3;
+	@FXML
+	private Label helpLabel4;
+	@FXML
+	private Label warningLabel;
 	
 	//Single-Line Text Fields
 	@FXML
 	private TextField firstNameText;
 	@FXML
 	private TextField lastNameText;
-	@FXML
-	private TextField birthMonthText;
-	@FXML
-	private TextField birthDayText;
-	@FXML
-	private TextField birthYearText;
-	@FXML
-	private TextField deathMonthText;
-	@FXML
-	private TextField deathDayText;
-	@FXML
-	private TextField deathYearText;
 	@FXML
 	private TextField occupationText;
 	@FXML
@@ -131,19 +131,21 @@ public class GuiController {
 	@FXML
 	private TextArea obituaryText;
 	
-	//Check Boxes for Choosing Gender
+	//Check Boxes for Determining if the Celebrity is Male or not
 	@FXML
 	private CheckBox maleCheckBox;
-	@FXML
-	private CheckBox femaleCheckBox;
 	
 	//Buttons
 	@FXML
 	private Button addButton;
 	@FXML
-	private Button helpButton;
-	@FXML
 	private Button deleteButton;
+	@FXML
+	private Button dummyAddButton;
+	@FXML
+	private Button dummyDeleteButton;
+	@FXML
+	private Button dismissButton;
 	
 	//Date Pickers
 	@FXML
@@ -186,11 +188,16 @@ public class GuiController {
 	//Initializing the GUI
 	@FXML
 	private void initialize() {
+		//Sets the text displayed on the tabs at the top of the screen
 		insertTab.setText("Celebrity Information");
 		indexTab.setText("Celebrity Index");
 		helpTab.setText("Help");
-		//indexTable.setItems(observableDeadCelebrities);
 		
+		//Sets a warning for the user to be invisible until necessary
+		warningLabel.setVisible(false);
+		dismissButton.setVisible(false);
+		
+		//Sets the data that each column receives from the each Celebrity in the Observable List
 		firstNameColumn.setCellValueFactory(new PropertyValueFactory<DeadCelebrity, String>("firstName"));
 		lastNameColumn.setCellValueFactory(new PropertyValueFactory<DeadCelebrity, String>("lastName"));
 		birthColumn.setCellValueFactory(new PropertyValueFactory<DeadCelebrity, LocalDate>("birthDate"));
@@ -205,100 +212,106 @@ public class GuiController {
 		weightColumn.setCellValueFactory(new PropertyValueFactory<DeadCelebrity, Integer>("weight"));
 		genderColumn.setCellValueFactory(new PropertyValueFactory<DeadCelebrity, Boolean>("isMale"));
 	
+		//Allows the Index to be editable
 		indexTable.setEditable(true);
+		
+		//Allows specific columns within the Index to be editted by users
 		firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		occupationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		obituaryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		causeOfDeathColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
+		//Allows users to have multiple rows of entries in the Index selected at once
 		indexTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 	}
 	
-	//
+	//Stores the First Name of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleFirstName() {
 		firstName = firstNameText.getText();
 	}
 	
-	//
+	//Stores the last Name of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleLastName() {
 		lastName = lastNameText.getText();
 	}
 	
-	//
+	//Stores the Date of Birth of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleBirth() {
 		birthDate = birthDatePicker.getValue();
 	}
 	
-	//
+	//Stores the Date of Death of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleDeath() {
 		deathDate = deathDatePicker.getValue();
 	}
 	
-	//
+	//Stores the Occupation of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleOccupation() {
 		occupation = occupationText.getText();
 	}
 	
-	//
+	//Stores the Height (ft) of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleHeightInFeet() {
 		String heightFeetString = heightFeetText.getText();
-		
+		//Converts the text from the local variable into a number
 		heightInFeet = Integer.parseInt(heightFeetString);
 	}
 	
-	//
+	//Stores the Height (in) of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleHeightInInches() {
 		String heightInchesString = heightInchesText.getText();
-		
+		//Converts the text from the local variable into a number
 		heightInInches = Integer.parseInt(heightInchesString);
 	}
 	
-	//
+	//Stores the Weight (lbs) of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleWeight() {
 		String weightString = weightText.getText();
-		
+		//Converts the text from the local variable into a number
 		weight = Integer.parseInt(weightString);
 	}
-	//
+	
+	//Stores the Net Worth ($) of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleNetWorth() {
 		String netWorthString = netWorthText.getText();
-		
+		//Converts the text from the local variable into a number
 		netWorth = Double.parseDouble(netWorthString);
 	}
 	
-	//
+	//Stores the Cause of Death of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleCauseOfDeath() {
 		causeOfDeath = causeOfDeathText.getText();
 	}
 	
-	//
+	//Stores the Obituary of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleObituary() {
 		obituary = obituaryText.getText();
 	}
 	
-	//Sets the Celebrity's Gender to Male
+	//Determines whether the Celebrity is Male or Female
 	@FXML
 	private void handleMaleCheck() {
 		isMale = maleCheckBox.isSelected();
 	}
 	
-	//
+	//Stores the Waist Size of the Celebrity from the text field to a local variable
 	@FXML
 	private void handleWaistSize() {
 		String waistSizeString = waistSizeText.getText();
+		//Converts the text from the local variable into a number
 		waistSize = Double.parseDouble(waistSizeString);
 	}
 	
@@ -306,23 +319,24 @@ public class GuiController {
 	@FXML
 	private void newCelebrity() {
 		
-	if(heightInFeet > 0) {
+	//Checks if First Name, Last Name, Cause of Death, and Height are input
+	if(((firstNameText.getText() == "") == true)&&((lastNameText.getText() == "") == true)&&((causeOfDeathText.getText() == "") == true)
+			&&((Integer.parseInt(heightFeetText.getText()) >= 0))&&((Integer.parseInt(heightInchesText.getText())) >= 0)) {
 		
-		/*DeadCelebrity newDeadCelebrity = new DeadCelebrity(firstName, lastName,
-				birthDate, deathDate, occupation, obituary, causeOfDeath,
-				netWorth, waistSize, heightInFeet, heightInInches, weight, isMale);
-				*/
-		
+		//Adds the data taken from the user and adds it to the Observable List for the Celebrities
 		deadCelebrities.add(celebCount, new DeadCelebrity(firstName, lastName,
 				birthDate, deathDate, occupation, obituary, causeOfDeath,
 				netWorth, waistSize, heightInFeet, heightInInches, weight, isMale));
+		//Adds the newest entry from the List to the Index
 		indexTable.setItems(deadCelebrities);
+		//Moves the data to the next indexing
 		celebCount++;
 		
+		//Resets the values within the table after data has been stored
 		firstNameText.setText("");
 		lastNameText.setText("");
-		birthDatePicker.setValue(LocalDate.of(0, 0, 0));
-		deathDatePicker.setValue(LocalDate.of(0, 0, 0));
+		birthDatePicker.setValue(LocalDate.of(18, 10, 1999));
+		deathDatePicker.setValue(LocalDate.of(12, 31, 3000));
 		occupationText.setText("");
 		heightFeetText.setText("");
 		heightInchesText.setText("");
@@ -332,6 +346,7 @@ public class GuiController {
 		causeOfDeathText.setText("");
 		obituaryText.setText("");
 		
+		//Resets the local variables back to their default values
 		firstName = "";
 		lastName = "";
 		occupation = "";
@@ -339,116 +354,86 @@ public class GuiController {
 		causeOfDeath = "";
 		netWorth = 0;
 		waistSize = 0;
-		heightInFeet = -10;
-		heightInInches = 0;
+		heightInFeet = -1;
+		heightInInches = -1;
 		weight = 0;
 		isMale = false;
 		}
+	
+	//If the user does not enter the required fields
 	else {
-		
+			//Displays the warning and the button to dismiss the warning
+			warningLabel.setVisible(true);
+			dismissButton.setVisible(true);
 		}
 	}
 	
-	//Moves to the "Help" Tab when the "Help" button is clicked
+	//Hides the warning and the button until necessary
 	@FXML
-	private void windowAssist() {
-		tabPane.getSelectionModel().select(helpTab);
+	private void dismissWarning() {
+		warningLabel.setVisible(false);
+		dismissButton.setVisible(false);
 	}
 	
-	//
+	//Updates the data of the First Name entry in the Index 
 	@FXML
 	private void handleChangeFirstName(CellEditEvent edittedCell) {
+		//Gets the value of the updated entry
 		DeadCelebrity selectedCelbrity = indexTable.getSelectionModel().getSelectedItem();
+		//Sets the value within the entry to the updated value
 		selectedCelbrity.setFirstName(edittedCell.getNewValue().toString());
 	}
 	
-	//
+	//Updates the data of the Last Name entry in the Index 
 	@FXML
 	private void handleChangeLastName(CellEditEvent edittedCell) {
+		//Gets the value of the updated entry
 		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
+		//Sets the value within the entry to the updated value
 		selectedCelebrity.setLastName(edittedCell.getNewValue().toString());
 	}
 	
-	//
+	//Updates the data of the Occupation entry in the Index 
 	@FXML
 	private void handleChangeOccupation(CellEditEvent edittedCell) {
+		//Gets the value of the updated entry
 		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
+		//Sets the value within the entry to the updated value
 		selectedCelebrity.setOccupation(edittedCell.getNewValue().toString());
 	}
 	
-	//
+	//Updates the data of the Obituary entry in the Index 
 	@FXML
 	private void handleChangeObituary(CellEditEvent edittedCell) {
+		//Gets the value of the updated entry
 		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
+		//Sets the value within the entry to the updated value
 		selectedCelebrity.setObituary(edittedCell.getNewValue().toString());	
 	}
 	
-	//
+	//Updates the data of the Cause of Death entry in the Index 
 	@FXML
 	private void handleChangeCauseOfDeath(CellEditEvent edittedCell) {
+		//Gets the value of the updated entry
 		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
+		//Sets the value within the entry to the updated value
 		selectedCelebrity.setCauseOfDeath(edittedCell.getNewValue().toString());
 	}
 	
-	//
-	@FXML
-	private void handleChangeNetWorth(CellEditEvent edittedCell) {
-		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
-		selectedCelebrity.setNetWorth(Double.parseDouble(edittedCell.getNewValue().toString()));
-	}
-	
-	//
-	@FXML
-	private void handleChangeWaistSize(CellEditEvent edittedCell) {
-		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
-		selectedCelebrity.setWaistSize(Double.parseDouble(edittedCell.getNewValue().toString()));
-	}
-	
-	//
-	@FXML
-	private void handleChangeHeightInFeet(CellEditEvent edittedCell) {
-		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
-		selectedCelebrity.setHeightInFeet(Integer.parseInt(edittedCell.getNewValue().toString()));
-	}
-	
-	//
-	@FXML
-	private void handleChangeHeightInInches(CellEditEvent edittedCell) {
-		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
-		selectedCelebrity.setHeightInInches(Integer.parseInt(edittedCell.getNewValue().toString()));
-	}
-	
-	//
-	@FXML
-	private void handleChangeWeight(CellEditEvent edittedCell) {
-		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
-		selectedCelebrity.setWeight(Integer.parseInt(edittedCell.getNewValue().toString())); 
-	}
-	
-	//
-	@FXML
-	private void handleChangeIsMale(CellEditEvent edittedCell) {
-		DeadCelebrity selectedCelebrity = indexTable.getSelectionModel().getSelectedItem();
-		selectedCelebrity.setIsMale(Boolean.parseBoolean(edittedCell.getNewValue().toString()));
-	}
-	
-	public ObservableList<DeadCelebrity> getDeadCelebrities(){
-		ObservableList<DeadCelebrity> deadCelebrities = FXCollections.observableArrayList();
-		return deadCelebrities;
-	}
-	
-	
-	//
+	//Allows the deletion of one or more row(s) of entries in the Index
 	@FXML
 	public void deleteRowsButton() {
+		//Creates new Lists for the entries selected and the entire Index
 		ObservableList<DeadCelebrity> selectedRows, completeIndex;
+		//Makes the temporary Index have all of the values of the actual Index
 		completeIndex = indexTable.getItems();
-		
+		//Gets the highlighted entries and puts them into a temporary List
 		selectedRows = indexTable.getSelectionModel().getSelectedItems();
-		
+		//Deletes the entries from the List and the Index
 		for(DeadCelebrity deadCelebrities : selectedRows) {
 			completeIndex.remove(deadCelebrities);
 		}
+	
 	}
 
 }

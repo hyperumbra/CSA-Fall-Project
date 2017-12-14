@@ -13,19 +13,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GuiController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GuiController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="899.0" prefWidth="1596.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="insertTab" onSelectionChanged="#hideDeleteButton" text="New Celebrity">
+          <Tab fx:id="insertTab" text="New Celebrity">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" onKeyReleased="#handleWaistSize" prefHeight="378.0" prefWidth="775.0">
                      <children>
-                        <Label fx:id="firstNameLabel" layoutX="25.0" layoutY="60.0" text="First Name">
+                        <Label fx:id="firstNameLabel" layoutX="25.0" layoutY="60.0" text="*First Name">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label fx:id="lastNameLabel" layoutX="26.0" layoutY="122.0" text="Last Name">
+                        <Label fx:id="lastNameLabel" layoutX="26.0" layoutY="122.0" text="*Last Name">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
@@ -41,7 +41,7 @@
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label fx:id="heightLabel" layoutX="495.0" layoutY="123.0" text="Height">
+                        <Label fx:id="heightLabel" layoutX="495.0" layoutY="123.0" text="*Height">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
@@ -49,7 +49,7 @@
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label fx:id="genderLabel" layoutX="492.0" layoutY="54.0" prefHeight="35.0" prefWidth="74.0" text="Gender">
+                        <Label fx:id="genderLabel" layoutX="492.0" layoutY="54.0" prefHeight="35.0" prefWidth="74.0" text="Male?">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
@@ -57,7 +57,7 @@
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label fx:id="causeOfDeathLabel" layoutX="18.0" layoutY="428.0" text="Cause of Death">
+                        <Label fx:id="causeOfDeathLabel" layoutX="18.0" layoutY="428.0" text="*Cause of Death">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
@@ -76,17 +76,12 @@
                         <TextField fx:id="occupationText" layoutX="194.0" layoutY="358.0" onAction="#handleOccupation" onKeyPressed="#handleOccupation" onKeyReleased="#handleOccupation" prefHeight="26.0" prefWidth="164.0" />
                         <TextField fx:id="causeOfDeathText" layoutX="194.0" layoutY="426.0" onAction="#handleCauseOfDeath" onKeyPressed="#handleCauseOfDeath" onKeyReleased="#handleCauseOfDeath" prefHeight="26.0" prefWidth="172.0" />
                         <TextArea fx:id="obituaryText" layoutX="192.0" layoutY="505.0" onKeyPressed="#handleCauseOfDeath" onKeyReleased="#handleObituary" prefHeight="117.0" prefWidth="181.0" />
-                        <CheckBox fx:id="maleCheckBox" layoutX="629.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleMaleCheck" text="Male">
+                        <CheckBox fx:id="maleCheckBox" layoutX="629.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleMaleCheck" text="Yes">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="femaleCheckBox" layoutX="721.0" layoutY="58.0" mnemonicParsing="false" text="Female">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </CheckBox>
-                        <TextField fx:id="heightFeetText" layoutX="639.0" layoutY="123.0" onKeyPressed="#handleHeightInFeet" onKeyReleased="#handleHeightInFeet" prefHeight="26.0" prefWidth="88.0" promptText="Feet">
+                        <TextField fx:id="heightFeetText" layoutX="628.0" layoutY="122.0" onKeyPressed="#handleHeightInFeet" onKeyReleased="#handleHeightInFeet" prefHeight="26.0" prefWidth="88.0" promptText="Feet">
                            <font>
                               <Font size="17.0" />
                            </font></TextField>
@@ -95,49 +90,77 @@
                               <Font size="17.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="weightText" layoutX="628.0" layoutY="199.0" onAction="#handleWeight" onKeyPressed="#handleWeight" onKeyReleased="#handleWeight" prefHeight="26.0" prefWidth="88.0" promptText="lbs">
+                        <TextField fx:id="weightText" layoutX="628.0" layoutY="197.0" onAction="#handleWeight" onKeyPressed="#handleWeight" onKeyReleased="#handleWeight" prefHeight="30.0" prefWidth="95.0" promptText="lbs">
                            <font>
                               <Font size="17.0" />
                            </font></TextField>
-                        <TextField fx:id="netWorthText" layoutX="634.0" layoutY="282.0" onAction="#handleNetWorth" onKeyPressed="#handleNetWorth" onKeyReleased="#handleNetWorth" promptText="USD">
+                        <TextField fx:id="netWorthText" layoutX="627.0" layoutY="280.0" onAction="#handleNetWorth" onKeyPressed="#handleNetWorth" onKeyReleased="#handleNetWorth" promptText="USD">
                            <font>
                               <Font size="17.0" />
                            </font></TextField>
-                        <TextField fx:id="waistSizeText" layoutX="635.0" layoutY="346.0" onKeyPressed="#handleWaistSize" onKeyReleased="#handleWaistSize" prefHeight="38.0" prefWidth="224.0" promptText="In" />
-                        <Button fx:id="addButton" layoutX="502.0" layoutY="565.0" mnemonicParsing="false" onMouseClicked="#newCelebrity" prefHeight="39.0" prefWidth="72.0" text="Add" />
-                        <Button fx:id="helpButton" layoutX="755.0" layoutY="562.0" mnemonicParsing="false" onAction="#windowAssist" onMouseClicked="#windowAssist" prefHeight="39.0" prefWidth="72.0" text="Help" />
-                        <TextArea layoutX="1006.0" layoutY="134.0" prefHeight="512.0" prefWidth="478.0" text="Help:&#10;&#10;First Name: Type the first name of the Dead Celebrity&#10;   i.e. &quot;Michael&quot;&#10;&#10;Last Name: Type the last name of the Dead Celebrity&#10;      i.e. &quot;Jackson&quot;&#10;&#10;Date of Birth: Type in the birthdate in 'MM-DD-YYYY' format or click&#10;                         the calendar on the left of the prompt box&#10;      i.e. &quot;08-29-1958&quot;&#10;&#10;Date of Death: Type in the birthdate in 'MM-DD-YYYY' format or click&#10;                           the calendar on the left of the prompt box&#10;      i.e. &quot;06-25-2009&quot;&#10;&#10;Occupation: Type in what the primary occupation of the celebrity was&#10;      i.e. &quot;Musician&quot;&#10;&#10;Cause of Death: Type in the primary cause of death of the celebity&#10;      i.e. &quot;Overdose&quot;&#10;Obituary: Type in the official or unofficial obituary concerning the&#10;                  the celebrity&#10;      i.e. &quot;&quot;" />
+                        <TextField fx:id="waistSizeText" layoutX="627.0" layoutY="351.0" onKeyPressed="#handleWaistSize" onKeyReleased="#handleWaistSize" prefHeight="38.0" prefWidth="224.0" promptText="In" />
+                        <Button fx:id="addButton" layoutX="640.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#newCelebrity" prefHeight="39.0" prefWidth="166.0" text="Add" />
+                        <Label fx:id="warningLabel" layoutX="907.0" layoutY="121.0" prefHeight="338.0" prefWidth="276.0" text="Please fill in the required fields!" wrapText="true">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="dismissButton" layoutX="988.0" layoutY="367.0" mnemonicParsing="false" onAction="#dismissWarning" text="Dismiss Warning" />
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="indexTab" onSelectionChanged="#displayDeleteButton" text="Dead Celebrity Index">
+          <Tab fx:id="indexTab" text="Dead Celebrity Index">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="292.0" prefWidth="807.0">
                      <children>
-                        <Button fx:id="deleteButton" layoutX="658.0" layoutY="780.0" mnemonicParsing="false" onAction="#deleteRowsButton" prefHeight="56.0" prefWidth="266.0" text="Delete" />
-                        <TableView fx:id="indexTable" layoutX="-1.0" layoutY="-3.0" prefHeight="761.0" prefWidth="1598.0">
+                        <Button fx:id="deleteButton" layoutX="509.0" layoutY="592.0" mnemonicParsing="false" onAction="#deleteRowsButton" prefHeight="56.0" prefWidth="266.0" text="Delete" />
+                        <TableView fx:id="indexTable" layoutX="-1.0" layoutY="-3.0" prefHeight="600.0" prefWidth="1289.0">
                           <columns>
                             <TableColumn fx:id="firstNameColumn" onEditCommit="#handleChangeFirstName" text="First Name" />
-                              <TableColumn fx:id="lastNameColumn" onEditCommit="#handleChangeLastName" prefWidth="89.0" text="Last Name" />
-                              <TableColumn fx:id="birthColumn" editable="false" prefWidth="91.0" text="Birthdate" />
-                            <TableColumn fx:id="deathColumn" editable="false" prefWidth="124.0" text="Date of Death" />
-                              <TableColumn fx:id="occupationColumn" onEditCommit="#handleChangeOccupation" prefWidth="123.0" sortable="false" text="Occupation" />
-                              <TableColumn fx:id="obituaryColumn" onEditCommit="#handleChangeObituary" prefWidth="209.0" sortable="false" text="Obituary" />
-                              <TableColumn fx:id="causeOfDeathColumn" onEditCommit="#handleChangeCauseOfDeath" prefWidth="174.0" text="Cause of Death" />
-                              <TableColumn fx:id="moneyColumn" onEditCommit="#handleChangeNetWorth" prefWidth="168.0" text="Net Worth" />
-                              <TableColumn fx:id="waistColumn" onEditCommit="#handleChangeWaistSize" prefWidth="109.0" text="Waist Size" />
-                              <TableColumn fx:id="heightInFeetColumn" onEditCommit="#handleChangeHeightInFeet" prefWidth="95.0" sortable="false" text="Height (Ft)" />
-                              <TableColumn fx:id="heightInInchesColumn" onEditCommit="#handleChangeHeightInInches" prefWidth="61.0" sortable="false" text="(In)" />
-                              <TableColumn fx:id="weightColumn" onEditCommit="#handleChangeWeight" prefWidth="145.0" text="Weight" />
-                              <TableColumn fx:id="genderColumn" onEditCommit="#handleChangeIsMale" prefWidth="126.0" sortable="false" text="Male" />
+                              <TableColumn fx:id="lastNameColumn" onEditCommit="#handleChangeLastName" prefWidth="85.0" text="Last Name" />
+                              <TableColumn fx:id="birthColumn" editable="false" prefWidth="95.0" text="Birthdate" />
+                            <TableColumn fx:id="deathColumn" editable="false" prefWidth="94.66665649414062" text="Date of Death" />
+                              <TableColumn fx:id="occupationColumn" onEditCommit="#handleChangeOccupation" prefWidth="93.0" sortable="false" text="Occupation" />
+                              <TableColumn fx:id="obituaryColumn" onEditCommit="#handleChangeObituary" prefWidth="159.0" sortable="false" text="Obituary" />
+                              <TableColumn fx:id="causeOfDeathColumn" onEditCommit="#handleChangeCauseOfDeath" prefWidth="130.6666259765625" text="Cause of Death" />
+                              <TableColumn fx:id="moneyColumn" prefWidth="130.3333740234375" text="Net Worth($)" />
+                              <TableColumn fx:id="waistColumn" prefWidth="69.0" text="Waist Size" />
+                              <TableColumn fx:id="heightInFeetColumn" prefWidth="79.3333740234375" sortable="false" text="Height (Ft)" />
+                              <TableColumn fx:id="heightInInchesColumn" prefWidth="72.0" sortable="false" text="(In)" />
+                              <TableColumn fx:id="weightColumn" prefWidth="88.0" text="Weight" />
+                              <TableColumn fx:id="genderColumn" prefWidth="101.0" sortable="false" text="Male" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="helpTab" onSelectionChanged="#hideDeleteButton" text="Help">
+            <Tab fx:id="helpTab" text="Help">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="dummyAddButton" layoutX="64.0" layoutY="325.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" text="Add" />
+                        <Button fx:id="dummyDeleteButton" layoutX="63.0" layoutY="469.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" text="Delete" />
+                        <Label fx:id="helpLabel1" layoutX="370.0" layoutY="81.0" prefHeight="65.0" prefWidth="646.0" text="You may only add a celebrity once the required fields are filled. Any other information will be defaulted to 0." wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="helpLabel2" layoutX="366.0" layoutY="186.0" prefHeight="63.0" prefWidth="658.0" text="Click on any of the First Name, Last Name, Cause of Death, Obituary, and Occupation entries within the Index to update the information." wrapText="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="helpLabel3" layoutX="367.0" layoutY="333.0" text="Click this button to add a celebrity to the Dead Celebrity Index">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="helpLabel4" layoutX="363.0" layoutY="461.0" prefHeight="104.0" prefWidth="664.0" text="Click this button to delete the selected celebrity from the Dead Celebrity Index. Using Ctrl+Click on multiple entries allows the selection of multiple entries and the deleteion of the multiple entries." wrapText="true">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

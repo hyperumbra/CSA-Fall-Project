@@ -1,7 +1,7 @@
 package application;
 
 import java.time.LocalDate;
-import javafx.beans.property.SimpleStringProperty;
+
 
 public class DeadCelebrity {
 	private String firstName;
@@ -161,6 +161,5 @@ public class DeadCelebrity {
 	public void setIsMale(boolean isMale) {
 		this.isMale = isMale;
 	}
-	
 
 }

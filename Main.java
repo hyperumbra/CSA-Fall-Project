@@ -23,11 +23,11 @@ public class Main extends Application {
 		try {
 			//Set main application and provide title and an icon
 			this.primaryStage = primaryStage;
-			this.primaryStage.setTitle("Dead Celebrities Database");
+			this.primaryStage.setTitle("Dead Celebrities Index");
 			this.primaryStage.getIcons().add(new Image("file:resources/wallhaven-273142.jpg"));
 			
 			
-			initPhaseTwoLayout();
+			indexLayout();
 		} 
 		catch(Exception e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	public void initPhaseTwoLayout() {
+	public void indexLayout() {
 		try {
 			//Create an FXML Loader object to load our scene builder file
 			FXMLLoader loader = new FXMLLoader();
