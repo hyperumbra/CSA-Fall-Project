@@ -1,0 +1,44 @@
+.button{
+	-fx-background-color: rgba(0, 122, 255, 1);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.button:hover{
+	-fx-background-color: black;
+	-fx-text-fill: rgba(0, 122, 255, 1);
+}
+
+.tab{
+	-fx-background-color: white;
+	-fx-text-fill: rgba(0, 122, 255, 1);
+	-fx-font-size: 14px;
+}
+
+.tabpane{
+	-fx-background-color: white;
+	-fx-text-fill: rgba(0, 122, 255, 1);
+}
+
+.label{
+	-fx-text-fill: rgba(0, 122, 255, 1);
+}
+
+.textfield{
+    -fx-background-radius: 5px,5px,4px;
+}
+
+.checkbox{
+	-fx-text-fill: rgba(0, 122, 255, 1);
+}
+
+.tablecolumn{
+	-fx-text-fill: rgba(0, 122, 255, 1);
+}
+
+.anchorpane{
+	-fx-background-color: white;
+}

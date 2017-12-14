@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GuiController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GuiController">
    <children>
-      <TabPane fx:id="tabPane" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="720.0" prefWidth="1280.0" styleClass="tabpane" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="insertTab" text="New Celebrity">
             <content>
@@ -72,11 +72,11 @@
                         <TextField fx:id="firstNameText" layoutX="202.0" layoutY="61.0" onAction="#handleFirstName" onKeyPressed="#handleFirstName" onKeyReleased="#handleFirstName" />
                         <TextField fx:id="lastNameText" layoutX="199.0" layoutY="129.0" onAction="#handleLastName" onKeyPressed="#handleLastName" onKeyReleased="#handleLastName" />
                         <DatePicker fx:id="birthDatePicker" layoutX="202.0" layoutY="199.0" onAction="#handleBirth" prefHeight="26.0" prefWidth="159.0" />
-                        <DatePicker fx:id="deathDatePicker" layoutX="198.0" layoutY="282.0" onAction="#handleDeath" prefHeight="26.0" prefWidth="164.0" />
+                        <DatePicker fx:id="deathDatePicker" layoutX="205.0" layoutY="283.0" onAction="#handleDeath" prefHeight="26.0" prefWidth="164.0" />
                         <TextField fx:id="occupationText" layoutX="194.0" layoutY="358.0" onAction="#handleOccupation" onKeyPressed="#handleOccupation" onKeyReleased="#handleOccupation" prefHeight="26.0" prefWidth="164.0" />
                         <TextField fx:id="causeOfDeathText" layoutX="194.0" layoutY="426.0" onAction="#handleCauseOfDeath" onKeyPressed="#handleCauseOfDeath" onKeyReleased="#handleCauseOfDeath" prefHeight="26.0" prefWidth="172.0" />
                         <TextArea fx:id="obituaryText" layoutX="192.0" layoutY="505.0" onKeyPressed="#handleCauseOfDeath" onKeyReleased="#handleObituary" prefHeight="117.0" prefWidth="181.0" />
-                        <CheckBox fx:id="maleCheckBox" layoutX="629.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleMaleCheck" text="Yes">
+                        <CheckBox fx:id="maleCheckBox" layoutX="629.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleMaleCheck" text="Yes" textFill="#007aff">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -99,13 +99,13 @@
                               <Font size="17.0" />
                            </font></TextField>
                         <TextField fx:id="waistSizeText" layoutX="627.0" layoutY="351.0" onKeyPressed="#handleWaistSize" onKeyReleased="#handleWaistSize" prefHeight="38.0" prefWidth="224.0" promptText="In" />
-                        <Button fx:id="addButton" layoutX="640.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#newCelebrity" prefHeight="39.0" prefWidth="166.0" text="Add" />
+                        <Button fx:id="addButton" layoutX="640.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#newCelebrity" prefHeight="39.0" prefWidth="166.0" stylesheets="@style.css" text="Add" />
                         <Label fx:id="warningLabel" layoutX="907.0" layoutY="121.0" prefHeight="338.0" prefWidth="276.0" text="Please fill in the required fields!" wrapText="true">
                            <font>
                               <Font size="40.0" />
                            </font>
                         </Label>
-                        <Button fx:id="dismissButton" layoutX="988.0" layoutY="367.0" mnemonicParsing="false" onAction="#dismissWarning" text="Dismiss Warning" />
+                        <Button fx:id="dismissButton" layoutX="988.0" layoutY="367.0" mnemonicParsing="false" onAction="#dismissWarning" stylesheets="@style.css" text="Dismiss Warning" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -113,7 +113,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="292.0" prefWidth="807.0">
                      <children>
-                        <Button fx:id="deleteButton" layoutX="509.0" layoutY="592.0" mnemonicParsing="false" onAction="#deleteRowsButton" prefHeight="56.0" prefWidth="266.0" text="Delete" />
+                        <Button fx:id="deleteButton" layoutX="509.0" layoutY="592.0" mnemonicParsing="false" onAction="#deleteRowsButton" prefHeight="56.0" prefWidth="266.0" stylesheets="@style.css" text="Delete" />
                         <TableView fx:id="indexTable" layoutX="-1.0" layoutY="-3.0" prefHeight="600.0" prefWidth="1289.0">
                           <columns>
                             <TableColumn fx:id="firstNameColumn" onEditCommit="#handleChangeFirstName" text="First Name" />
@@ -138,8 +138,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="dummyAddButton" layoutX="64.0" layoutY="325.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" text="Add" />
-                        <Button fx:id="dummyDeleteButton" layoutX="63.0" layoutY="469.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" text="Delete" />
+                        <Button fx:id="dummyAddButton" layoutX="64.0" layoutY="325.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" stylesheets="@style.css" text="Add" />
+                        <Button fx:id="dummyDeleteButton" layoutX="63.0" layoutY="469.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" stylesheets="@style.css" text="Delete" />
                         <Label fx:id="helpLabel1" layoutX="370.0" layoutY="81.0" prefHeight="65.0" prefWidth="646.0" text="You may only add a celebrity once the required fields are filled. Any other information will be defaulted to 0." wrapText="true">
                            <font>
                               <Font size="20.0" />
