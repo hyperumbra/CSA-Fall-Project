@@ -1,8 +1,3 @@
-/*	Joshua Donegal
- * 	Period 2
- * 	Pset 3-5
- * 	Phase 2
- */
 package application;
 	
 import javafx.application.Application;
@@ -16,15 +11,15 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 	
 	private Stage primaryStage;
-	private AnchorPane guiLayout;
+	private AnchorPane selectProject;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			//Set main application and provide title and an icon
 			this.primaryStage = primaryStage;
-			this.primaryStage.setTitle("Dead Celebrities Index");
-			this.primaryStage.getIcons().add(new Image("file:resources/wallhaven-273142.jpg"));
+			this.primaryStage.setTitle("Project Car Designer");
+			//this.primaryStage.getIcons().add(new Image(""));
 			
 			
 			indexLayout();
@@ -45,19 +40,20 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			
 			//Point the loader at the FXML file
-			loader.setLocation(Main.class.getResource("/application/GUI.fxml"));
+			loader.setLocation(Main.class.getResource("/application/ProjectView.fxml"));
 			
 			//Set the Pane layout field
-			guiLayout = (AnchorPane) loader.load();
+			selectProject = (AnchorPane) loader.load();
 			
 			//Set the scene object
-			Scene scene = new Scene(guiLayout);
+			Scene scene = new Scene(selectProject);
 			
 			//Apply CSS styling to the scene
-			scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+			//scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
 			
 			//Giving the controller access to the main program
-			GuiController controller = loader.getController();
+			//SelectProjectController controller = loader.getController();
+			ProjectViewController controller = loader.getController();
 			
 			//Put the scene onto the stage
 			primaryStage.setScene(scene);
